@@ -17,91 +17,129 @@
         }
 
         body {
-            /* フォント指定: 游ゴシックを優先し、なければ他のゴシック体、最終的にsans-serif */
             font-family: 'Yu Gothic', '游ゴシック', YuGothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
             margin: 20px;
-            background-color: var(--back-blue-color); /* 背景色 */
-            color: var(--navy-color); /* 基本フォントカラー */
+            background-color: var(--back-blue-color);
+            color: var(--navy-color);
         }
 
         h1, h2 {
-            color: var(--navy-color); /* 見出しカラー */
+            color: var(--navy-color);
             text-align: center;
         }
 
-        .controls, .status, .export {
+        .container {
             margin-bottom: 20px;
-            text-align: center;
-            background-color: var(--white-color); /* 白背景のコンテナ */
-            padding: 15px;
-            border-radius: 8px; /* 少し角丸を強く */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* 影を少し調整 */
+            background-color: var(--white-color);
+            padding: 15px 20px; /* 少し左右に余裕 */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+        .controls, .status {
+             text-align: center;
+             /* container に移動したため、個別の背景等は削除 */
+             padding-bottom: 10px;
+        }
+        /* statusは上下マージン少し調整 */
+        .status {
+            padding-top: 10px;
+            padding-bottom: 0;
+            margin-bottom: 0;
         }
 
         .controls button {
-            padding: 10px 20px; /* 少しパディング調整 */
+            padding: 10px 20px;
             margin: 5px;
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            background-color: var(--primary-color); /* プライマリーカラー */
-            color: var(--white-color); /* 白文字 */
+            background-color: var(--primary-color);
+            color: var(--white-color);
             font-size: 1em;
-            transition: background-color 0.2s ease; /* ホバー効果用 */
+            transition: background-color 0.2s ease;
         }
 
         .controls button:hover:not(:disabled) {
-            background-color: var(--secondary-color); /* セカンドカラー（ホバー時） */
+            background-color: var(--secondary-color);
         }
 
         .controls button:disabled {
-            background-color: #cccccc; /* 標準的な無効色 */
-            color: #666666; /* 無効時の文字色を少し濃く */
+            background-color: #cccccc;
+            color: #666666;
             cursor: not-allowed;
         }
 
-        /* 個別ボタンの調整（必要であれば） */
-        /* .controls button#endWorkBtn { background-color: var(--grey-color); } */
-        /* .controls button#startBreakBtn, .controls button#endBreakBtn { background-color: var(--secondary-color); } */
-
-
         .status span {
             font-weight: bold;
-            color: var(--primary-color); /* ステータス文字色 */
+            color: var(--primary-color);
         }
+
+        /* 月間サマリー用スタイル */
+        #monthlySummary {
+            text-align: center;
+        }
+        #monthlySummary label {
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        #monthSelector {
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .summary-items {
+            display: flex;
+            justify-content: space-around; /* 各項目を均等配置 */
+            flex-wrap: wrap; /* 小画面で折り返し */
+            text-align: left;
+            padding: 10px 0;
+            border-top: 1px solid #eee; /* 上に区切り線 */
+            margin-top: 15px;
+        }
+        .summary-item {
+             margin: 5px 15px; /* 項目間のマージン */
+        }
+        .summary-item strong {
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            display: block; /* 値を改行させる */
+            margin-top: 3px;
+        }
+        /* --- */
 
         #recordsTable {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background-color: var(--white-color); /* テーブル背景 */
+            background-color: var(--white-color);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-            border-radius: 8px; /* テーブル全体にも角丸 */
-            overflow: hidden; /* 角丸を有効にするため */
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         #recordsTable th, #recordsTable td {
-            border: 1px solid #e5e7eb; /* ボーダーを少し薄く */
-            padding: 12px 15px; /* パディング調整 */
+            border: 1px solid #e5e7eb;
+            padding: 12px 15px;
             text-align: center;
-            color: var(--navy-color); /* テーブル内文字色 */
+            color: var(--navy-color);
         }
 
         #recordsTable th {
-            background-color: var(--grey-blue-color); /* ヘッダー背景 */
-            font-weight: 600; /* 少し太字に */
+            background-color: var(--grey-blue-color);
+            font-weight: 600;
         }
 
         #recordsTable tbody tr:nth-child(even) {
-            background-color: var(--grey-blue-color); /* 偶数行背景 */
+            background-color: var(--grey-blue-color);
         }
         #recordsTable tbody tr:hover {
-            background-color: #e9efff; /* 行ホバー時の色 */
+            background-color: #e9efff;
         }
 
-
         #recordsTable button {
-            padding: 6px 10px; /* ボタンサイズ調整 */
+            padding: 6px 10px;
             margin: 0 3px;
             cursor: pointer;
             border: none;
@@ -111,23 +149,17 @@
             transition: background-color 0.2s ease;
         }
 
-        .edit-btn {
-            background-color: var(--primary-color); /* 編集ボタン */
-        }
-        .edit-btn:hover {
-            background-color: var(--secondary-color);
-        }
+        .edit-btn { background-color: var(--primary-color); }
+        .edit-btn:hover { background-color: var(--secondary-color); }
+        .delete-btn { background-color: var(--grey-color); }
+        .delete-btn:hover { background-color: #6c738a; }
 
-        .delete-btn {
-            background-color: var(--grey-color); /* 削除ボタン */
+        .export {
+            text-align: center; /* exportは独立したコンテナに */
         }
-        .delete-btn:hover {
-             background-color: #6c738a; /* グレーの少し濃い色 */
-        }
-
         .export button {
-            padding: 10px 25px; /* エクスポートボタンサイズ */
-            background-color: var(--primary-color); /* プライマリーカラー */
+            padding: 10px 25px;
+            background-color: var(--primary-color);
             color: var(--white-color);
             border: none;
             border-radius: 5px;
@@ -135,48 +167,68 @@
             font-size: 1em;
             transition: background-color 0.2s ease;
         }
-
-        .export button:hover {
-            background-color: var(--secondary-color); /* セカンドカラー（ホバー時） */
-        }
+        .export button:hover { background-color: var(--secondary-color); }
     </style>
 </head>
 <body>
     <h1>シンプル勤怠管理</h1>
 
-    <div class="controls">
-        <button id="startWorkBtn">出勤</button>
-        <button id="startBreakBtn" disabled>休憩開始</button>
-        <button id="endBreakBtn" disabled>休憩終了</button>
-        <button id="endWorkBtn" disabled>退勤</button>
+    <div class="container">
+        <div class="controls">
+            <button id="startWorkBtn">出勤</button>
+            <button id="startBreakBtn" disabled>休憩開始</button>
+            <button id="endBreakBtn" disabled>休憩終了</button>
+            <button id="endWorkBtn" disabled>退勤</button>
+        </div>
+
+        <div class="status">
+            現在のステータス: <span id="currentStatus">未出勤</span>
+        </div>
+
+        <div id="monthlySummary">
+             <div>
+                 <label for="monthSelector">対象月:</label>
+                 <input type="month" id="monthSelector">
+             </div>
+             <div class="summary-items">
+                 <div class="summary-item">
+                     総実働時間: <strong id="totalWorkTime">-</strong>
+                 </div>
+                 <div class="summary-item">
+                     総休憩時間: <strong id="totalBreakTime">-</strong>
+                 </div>
+                 <div class="summary-item">
+                     勤務日数: <strong id="workDays">-</strong>
+                 </div>
+             </div>
+         </div>
+         </div>
+
+    <div class="container">
+        <h2>勤怠記録</h2>
+        <table id="recordsTable">
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>出勤時刻</th>
+                    <th>退勤時刻</th>
+                    <th>休憩時間 (分)</th>
+                    <th>実働時間</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
     </div>
 
-    <div class="status">
-        現在のステータス: <span id="currentStatus">未出勤</span>
-    </div>
-
-    <h2>勤怠記録</h2>
-    <table id="recordsTable">
-        <thead>
-            <tr>
-                <th>日付</th>
-                <th>出勤時刻</th>
-                <th>退勤時刻</th>
-                <th>休憩時間 (分)</th>
-                <th>実働時間</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            </tbody>
-    </table>
-
-    <div class="export">
+    <div class="container export">
         <button id="exportCsvBtn">CSVでエクスポート</button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // DOM要素取得
             const startWorkBtn = document.getElementById('startWorkBtn');
             const startBreakBtn = document.getElementById('startBreakBtn');
             const endBreakBtn = document.getElementById('endBreakBtn');
@@ -184,15 +236,23 @@
             const currentStatusSpan = document.getElementById('currentStatus');
             const recordsTableBody = document.querySelector('#recordsTable tbody');
             const exportCsvBtn = document.getElementById('exportCsvBtn');
+            // 月間サマリー関連要素
+            const monthSelector = document.getElementById('monthSelector');
+            const totalWorkTimeSpan = document.getElementById('totalWorkTime');
+            const totalBreakTimeSpan = document.getElementById('totalBreakTime');
+            const workDaysSpan = document.getElementById('workDays');
+
 
             let records = [];
-            let currentRecord = null; // 現在アクティブな記録 (出勤中)
-            let breakStartTime = null; // 現在の休憩開始時刻
+            let currentRecord = null;
+            let breakStartTime = null;
 
             // --- 初期化 ---
             loadRecords();
+            initializeMonthSelector(); // 月選択を初期化
             updateButtonStates();
             renderTable();
+            updateMonthlySummary(); // 初期サマリー表示
 
             // --- イベントリスナー ---
             startWorkBtn.addEventListener('click', startWork);
@@ -200,47 +260,28 @@
             endBreakBtn.addEventListener('click', endBreak);
             endWorkBtn.addEventListener('click', endWork);
             exportCsvBtn.addEventListener('click', exportCSV);
+            monthSelector.addEventListener('change', updateMonthlySummary); // 月選択変更時にサマリー更新
 
-            // --- コントロール関数 ---
+            // --- コントロール関数 (変更なし) ---
             function startWork() {
-                if (currentRecord) {
-                    alert('既に出勤中です。');
-                    return;
-                }
+                if (currentRecord) { alert('既に出勤中です。'); return; }
                 const now = new Date();
-                currentRecord = {
-                    id: Date.now(), // ユニークIDとしてタイムスタンプを使用
-                    startTime: now,
-                    endTime: null,
-                    breakDuration: 0, // ミリ秒単位
-                    status: 'working'
-                };
+                currentRecord = { id: Date.now(), startTime: now, endTime: null, breakDuration: 0, status: 'working' };
                 updateStatusDisplay('勤務中');
                 updateButtonStates();
-                saveRecords(); // 現在の状態を保存
+                saveRecords();
             }
-
             function startBreak() {
-                if (!currentRecord || currentRecord.status !== 'working') {
-                    alert('勤務中ではありません。');
-                    return;
-                }
-                if (breakStartTime) {
-                     alert('既に休憩中です。');
-                     return;
-                }
+                if (!currentRecord || currentRecord.status !== 'working') { alert('勤務中ではありません。'); return; }
+                if (breakStartTime) { alert('既に休憩中です。'); return; }
                 breakStartTime = new Date();
                 currentRecord.status = 'on_break';
                 updateStatusDisplay('休憩中');
                 updateButtonStates();
                 saveRecords();
             }
-
             function endBreak() {
-                if (!currentRecord || currentRecord.status !== 'on_break' || !breakStartTime) {
-                    alert('休憩中ではありません。');
-                    return;
-                }
+                if (!currentRecord || currentRecord.status !== 'on_break' || !breakStartTime) { alert('休憩中ではありません。'); return; }
                 const now = new Date();
                 currentRecord.breakDuration += (now - breakStartTime);
                 breakStartTime = null;
@@ -249,368 +290,273 @@
                 updateButtonStates();
                 saveRecords();
             }
-
-            function endWork() {
-                if (!currentRecord || currentRecord.status === 'finished') {
-                    alert('出勤していません。');
-                    return;
-                }
+             function endWork() {
+                if (!currentRecord || currentRecord.status === 'finished') { alert('出勤していません。'); return; }
                 if (currentRecord.status === 'on_break') {
-                    // 休憩中に退勤した場合、休憩を終了させる
                     const now = new Date();
                     currentRecord.breakDuration += (now - breakStartTime);
                     breakStartTime = null;
                 }
-
                 currentRecord.endTime = new Date();
                 currentRecord.status = 'finished';
                 updateStatusDisplay('未出勤');
-
-                // 完了した記録をrecords配列に追加
-                // 既存の同じIDがあれば更新、なければ追加
                 const existingIndex = records.findIndex(r => r.id === currentRecord.id);
-                 if (existingIndex !== -1) {
-                    records[existingIndex] = { ...currentRecord }; // 更新
-                } else {
-                    records.push({ ...currentRecord }); // 新規追加
-                }
-
-                currentRecord = null; // 現在の記録をリセット
+                 if (existingIndex !== -1) { records[existingIndex] = { ...currentRecord }; }
+                 else { records.push({ ...currentRecord }); }
+                 const finishedRecord = { ...currentRecord }; // コピーを保存
+                currentRecord = null;
                 updateButtonStates();
-                saveRecords(); // records配列とcurrentRecord=nullの状態を保存
+                saveRecords();
                 renderTable();
+                // 完了した記録の月に応じてサマリーを更新
+                 checkAndUpdateSummary(finishedRecord.startTime);
             }
 
-            // --- データ処理 ---
-             function saveRecords() {
-                 // 完了済みレコード(records)と現在アクティブなレコード(currentRecord)を結合して保存
+            // --- データ処理 (変更なし) ---
+            function saveRecords() {
                  const dataToSave = [...records];
                  if (currentRecord) {
-                    // currentRecordが完了済みリスト(records)に誤って含まれていないことを確認
-                    // (通常はendWorkで処理されるが念のため)
                     const existingIndexInRecords = records.findIndex(r => r.id === currentRecord.id);
-                     if (existingIndexInRecords === -1) {
-                        // アクティブなレコードが完了リストになければ、保存データに追加
-                        dataToSave.push(currentRecord);
-                     } else {
-                         // もしアクティブなはずのレコードが完了リストにあれば、それを更新
-                         // （通常ここには来ないはず）
-                         dataToSave[existingIndexInRecords] = currentRecord;
-                     }
+                     if (existingIndexInRecords === -1) { dataToSave.push(currentRecord); }
+                     else { dataToSave[existingIndexInRecords] = currentRecord; }
                  }
                  localStorage.setItem('timeRecords', JSON.stringify(dataToSave));
              }
-
-             function loadRecords() {
+            function loadRecords() {
                  const savedData = localStorage.getItem('timeRecords');
                  if (savedData) {
                      const loadedData = JSON.parse(savedData).map(r => ({
                          ...r,
-                         // JSON文字列からDateオブジェクトに復元
                          startTime: r.startTime ? new Date(r.startTime) : null,
                          endTime: r.endTime ? new Date(r.endTime) : null,
                      }));
-
-                     // 未完了のレコードを探してcurrentRecordにセット
                      currentRecord = loadedData.find(r => r.status && r.status !== 'finished') || null;
-                     // 完了済みのものだけrecordsに（currentRecordと重複しないように）
                      records = loadedData.filter(r => r.status === 'finished' && (!currentRecord || r.id !== currentRecord.id));
-
-                     // 休憩中状態でリロードした場合のbreakStartTime復元
                      if (currentRecord && currentRecord.status === 'on_break') {
-                         // リロード時は休憩状態を解除し、勤務中に戻す（シンプル化のため）
                          console.warn("ページリロードにより休憩状態が解除されました。");
-                         currentRecord.status = 'working';
-                         breakStartTime = null; // リセット
-                         saveRecords(); // 状態を保存し直す
+                         currentRecord.status = 'working'; breakStartTime = null; saveRecords();
                      }
-
                      updateStatusDisplay(currentRecord ? (currentRecord.status === 'on_break' ? '休憩中' : '勤務中') : '未出勤');
-                 } else {
-                     records = [];
-                     currentRecord = null;
-                     updateStatusDisplay('未出勤');
-                 }
+                 } else { records = []; currentRecord = null; updateStatusDisplay('未出勤'); }
              }
 
-            // --- 表示関連 ---
+            // --- 表示関連 (renderTable, updateButtonStates, updateStatusDisplayは変更なし) ---
             function renderTable() {
-                recordsTableBody.innerHTML = ''; // テーブルをクリア
-                // IDの降順（新しいものが上）でソートして表示
+                recordsTableBody.innerHTML = '';
                 [...records].sort((a, b) => b.id - a.id).forEach(record => {
-                    if (!record || record.status !== 'finished') return; // 念のため完了レコードのみ表示
-
+                    if (!record || record.status !== 'finished') return;
                     const row = recordsTableBody.insertRow();
-
                     const workDuration = calculateWorkDuration(record.startTime, record.endTime, record.breakDuration);
                     const breakMinutes = Math.floor(record.breakDuration / (1000 * 60));
-
                     row.innerHTML = `
-                        <td>${formatDate(record.startTime)}</td>
-                        <td>${formatTime(record.startTime)}</td>
-                        <td>${record.endTime ? formatTime(record.endTime) : '-'}</td>
-                        <td>${breakMinutes}</td>
+                        <td>${formatDate(record.startTime)}</td> <td>${formatTime(record.startTime)}</td>
+                        <td>${record.endTime ? formatTime(record.endTime) : '-'}</td> <td>${breakMinutes}</td>
                         <td>${workDuration}</td>
-                        <td>
-                            <button class="edit-btn" data-id="${record.id}">編集</button>
-                            <button class="delete-btn" data-id="${record.id}">削除</button>
-                        </td>
+                        <td> <button class="edit-btn" data-id="${record.id}">編集</button> <button class="delete-btn" data-id="${record.id}">削除</button> </td>
                     `;
                 });
-
-                // テーブル内のボタンにイベントリスナーを追加
                 addTableButtonListeners();
             }
-
             function updateButtonStates() {
-                if (currentRecord) {
+                 if (currentRecord) {
                     startWorkBtn.disabled = true;
-                    if (currentRecord.status === 'working') {
-                        startBreakBtn.disabled = false;
-                        endBreakBtn.disabled = true;
-                        endWorkBtn.disabled = false;
-                    } else if (currentRecord.status === 'on_break') {
-                        startBreakBtn.disabled = true;
-                        endBreakBtn.disabled = false;
-                        endWorkBtn.disabled = false; // 休憩中でも退勤可能とする
-                    }
-                } else { // 未出勤
-                    startWorkBtn.disabled = false;
-                    startBreakBtn.disabled = true;
-                    endBreakBtn.disabled = true;
-                    endWorkBtn.disabled = true;
-                }
+                    if (currentRecord.status === 'working') { startBreakBtn.disabled = false; endBreakBtn.disabled = true; endWorkBtn.disabled = false; }
+                    else if (currentRecord.status === 'on_break') { startBreakBtn.disabled = true; endBreakBtn.disabled = false; endWorkBtn.disabled = false; }
+                } else { startWorkBtn.disabled = false; startBreakBtn.disabled = true; endBreakBtn.disabled = true; endWorkBtn.disabled = true; }
             }
+            function updateStatusDisplay(statusText) { currentStatusSpan.textContent = statusText; }
 
-            function updateStatusDisplay(statusText) {
-                currentStatusSpan.textContent = statusText;
+             // --- 月間サマリー関連 ---
+             function initializeMonthSelector() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                monthSelector.value = `${year}-${month}`;
+             }
+
+             function calculateMonthlySummary(year, month) {
+                 let totalWorkMs = 0;
+                 let totalBreakMs = 0;
+                 let workDaysCount = 0;
+
+                 // recordsの中から指定年月の完了済み記録を抽出
+                 const monthlyRecords = records.filter(record => {
+                     if (!record || record.status !== 'finished' || !record.startTime || !record.endTime) {
+                         return false;
+                     }
+                     try {
+                         const recordYear = record.startTime.getFullYear();
+                         const recordMonth = record.startTime.getMonth(); // 0-indexed
+                         // yearとmonthは数値として比較 (monthは0-indexedに合わせる)
+                         return recordYear === parseInt(year) && recordMonth === (parseInt(month) - 1);
+                     } catch (e) {
+                         console.error("Error filtering record:", record, e);
+                         return false;
+                     }
+                 });
+
+                 monthlyRecords.forEach(record => {
+                     try {
+                         const workMs = record.endTime.getTime() - record.startTime.getTime() - record.breakDuration;
+                         if (!isNaN(workMs) && workMs >= 0) {
+                             totalWorkMs += workMs;
+                         }
+                         if (!isNaN(record.breakDuration) && record.breakDuration >= 0) {
+                             totalBreakMs += record.breakDuration;
+                         }
+                         workDaysCount++;
+                     } catch (e) {
+                          console.error("Error calculating duration for record:", record, e);
+                     }
+                 });
+
+                 return { totalWorkMs, totalBreakMs, workDays: workDaysCount };
+             }
+
+             function updateMonthlySummary() {
+                 const selectedMonthValue = monthSelector.value; // "YYYY-MM"
+                 if (!selectedMonthValue) {
+                     // 値が空の場合はクリア
+                     totalWorkTimeSpan.textContent = '-';
+                     totalBreakTimeSpan.textContent = '-';
+                     workDaysSpan.textContent = '-';
+                     return;
+                 }
+
+                 const [year, month] = selectedMonthValue.split('-');
+
+                 if (!year || !month) {
+                     console.error("Invalid month selector value:", selectedMonthValue);
+                     return;
+                 }
+
+                 const summary = calculateMonthlySummary(year, month);
+
+                 totalWorkTimeSpan.textContent = formatDuration(summary.totalWorkMs);
+                 totalBreakTimeSpan.textContent = formatDuration(summary.totalBreakMs); // 休憩もHH:MM:SS形式で表示
+                 workDaysSpan.textContent = summary.workDays.toString();
+             }
+
+            // 記録の変更があった場合に、表示中の月のサマリーだったら更新する関数
+            function checkAndUpdateSummary(recordDate) {
+                if (!recordDate || !(recordDate instanceof Date)) return;
+
+                const selectedMonthValue = monthSelector.value;
+                if (!selectedMonthValue) return;
+
+                const [selectedYear, selectedMonth] = selectedMonthValue.split('-');
+                try {
+                    const recordYear = recordDate.getFullYear();
+                    const recordMonth = recordDate.getMonth() + 1; // 1-indexed
+
+                    if (parseInt(selectedYear) === recordYear && parseInt(selectedMonth) === recordMonth) {
+                        updateMonthlySummary(); // 表示中の月に関連する記録が変更されたのでサマリーを更新
+                    }
+                 } catch (e) {
+                     console.error("Error checking date for summary update:", recordDate, e);
+                 }
             }
+            // --- /月間サマリー関連 ---
+
 
             // --- テーブル内ボタンの処理 ---
             function addTableButtonListeners() {
-                document.querySelectorAll('.edit-btn').forEach(button => {
-                     // 古いリスナーが残らないように一旦削除（より安全な方法）
+                document.querySelectorAll('.edit-btn, .delete-btn').forEach(button => {
                      button.replaceWith(button.cloneNode(true));
                 });
-                 document.querySelectorAll('.delete-btn').forEach(button => {
-                     button.replaceWith(button.cloneNode(true));
-                 });
-
-                 // 新しい要素にリスナーを再設定
-                 document.querySelectorAll('.edit-btn').forEach(button => {
-                     button.addEventListener('click', handleEdit);
-                 });
-                 document.querySelectorAll('.delete-btn').forEach(button => {
-                     button.addEventListener('click', handleDelete);
-                 });
+                 document.querySelectorAll('.edit-btn').forEach(button => { button.addEventListener('click', handleEdit); });
+                 document.querySelectorAll('.delete-btn').forEach(button => { button.addEventListener('click', handleDelete); });
             }
-
             function handleEdit(event) {
                 const recordId = parseInt(event.target.dataset.id);
                 const recordIndex = records.findIndex(r => r.id === recordId);
                 if (recordIndex === -1) return;
-
                 const record = records[recordIndex];
+                const originalStartTime = record.startTime; // 更新チェック用
 
-                // promptを使って簡易的に編集
+                // --- (prompt部分は変更なし) ---
                 const newStartTimeStr = prompt(`出勤時刻 (${formatDateTime(record.startTime)}) を編集 (YYYY-MM-DD HH:MM):`, formatDateTimeForInput(record.startTime));
-                if (newStartTimeStr === null) return; // キャンセル
-
+                if (newStartTimeStr === null) return;
                 const newEndTimeStr = prompt(`退勤時刻 (${record.endTime ? formatDateTime(record.endTime) : '-'}) を編集 (YYYY-MM-DD HH:MM):`, record.endTime ? formatDateTimeForInput(record.endTime) : '');
-                if (newEndTimeStr === null) return; // キャンセル
-
+                if (newEndTimeStr === null) return;
                 const newBreakMinutesStr = prompt(`休憩時間 (分) (${Math.floor(record.breakDuration / 60000)}) を編集:`, Math.floor(record.breakDuration / 60000).toString());
-                if (newBreakMinutesStr === null) return; // キャンセル
+                if (newBreakMinutesStr === null) return;
+                // --- /prompt部分 ---
 
                 try {
                     const newStartTime = parseDateTimeString(newStartTimeStr);
-                    // 退勤時刻が空文字の場合はnull、そうでなければパース
                     const newEndTime = newEndTimeStr.trim() === '' ? null : parseDateTimeString(newEndTimeStr);
                     const newBreakMinutes = parseInt(newBreakMinutesStr);
-
-                    // 入力値バリデーション
-                    if (!newStartTime || (newEndTimeStr.trim() !== '' && !newEndTime) || isNaN(newBreakMinutes) || newBreakMinutes < 0) {
-                        throw new Error('入力形式が無効か、不正な値です。');
-                    }
-                     if(newEndTime && newStartTime >= newEndTime){
-                         throw new Error('退勤時刻は出勤時刻より後にしてください。');
-                     }
-                     // 退勤時刻が入力されていなければ編集不可にするか、ここでエラーにする（今回は許容）
-                     // if (newEndTimeStr.trim() === '' || !newEndTime) {
-                     //     throw new Error('退勤時刻を入力してください。');
-                     // }
-
+                    if (!newStartTime || (newEndTimeStr.trim() !== '' && !newEndTime) || isNaN(newBreakMinutes) || newBreakMinutes < 0) { throw new Error('入力形式が無効か、不正な値です。'); }
+                     if(newEndTime && newStartTime >= newEndTime){ throw new Error('退勤時刻は出勤時刻より後にしてください。'); }
 
                     records[recordIndex].startTime = newStartTime;
                     records[recordIndex].endTime = newEndTime;
-                    records[recordIndex].breakDuration = newBreakMinutes * 60 * 1000; // ミリ秒に変換
+                    records[recordIndex].breakDuration = newBreakMinutes * 60 * 1000;
 
                     saveRecords();
                     renderTable();
                     alert('記録を更新しました。');
+                    // 変更前後の日付に基づいてサマリー更新をチェック
+                    checkAndUpdateSummary(originalStartTime);
+                    checkAndUpdateSummary(newStartTime);
 
-                } catch (error) {
-                    alert(`編集エラー: ${error.message}\n日付時刻は YYYY-MM-DD HH:MM の形式で入力してください。\n休憩時間は0以上の半角数字で入力してください。`);
-                }
+                } catch (error) { alert(`編集エラー: ${error.message}\n日付時刻はYYYY-MM-DD HH:MM の形式で入力してください。\n休憩時間は0以上の半角数字で入力してください。`); }
             }
-
              function handleDelete(event) {
                 const recordId = parseInt(event.target.dataset.id);
-                 // 削除対象がアクティブなレコードでないことを確認（念のため）
-                 if (currentRecord && currentRecord.id === recordId) {
-                     alert('現在アクティブな記録は削除できません。退勤後に削除してください。');
-                     return;
-                 }
+                 if (currentRecord && currentRecord.id === recordId) { alert('現在アクティブな記録は削除できません。'); return; }
+
+                 const recordIndex = records.findIndex(r => r.id === recordId);
+                 if (recordIndex === -1) return;
+                 const deletedRecordStartTime = records[recordIndex].startTime; // サマリー更新チェック用
 
                 if (confirm(`ID: ${recordId} の記録を削除してもよろしいですか？ この操作は元に戻せません。`)) {
                     records = records.filter(r => r.id !== recordId);
-                    saveRecords(); // 削除後のrecordsを保存
+                    saveRecords();
                     renderTable();
                     alert('記録を削除しました。');
+                    // 削除された記録の月に応じてサマリーを更新
+                    checkAndUpdateSummary(deletedRecordStartTime);
                 }
             }
 
-            // --- CSVエクスポート ---
+            // --- CSVエクスポート (変更なし) ---
             function exportCSV() {
-                if (records.length === 0) {
-                    alert('エクスポートするデータがありません。');
-                    return;
-                }
-
-                let csvContent = "";
-                // ヘッダー行 (BOMを追加してExcelでの文字化けを防ぐ)
-                csvContent += "\uFEFF";
-                csvContent += "日付,出勤時刻,退勤時刻,休憩時間(分),実働時間(HH:MM:SS)\r\n";
-
-                // データ行 (新しい順)
-                [...records].sort((a, b) => b.id - a.id).forEach(record => {
-                    // 完了していないレコードはエクスポート対象外（endTimeがないなど）
-                    if (!record.endTime) return;
-
-                    const date = formatDate(record.startTime);
-                    const startTime = formatTime(record.startTime);
-                    const endTime = formatTime(record.endTime); // endTimeがnullでない前提
-                    const breakMinutes = Math.floor(record.breakDuration / (1000 * 60));
-                    const workDuration = calculateWorkDuration(record.startTime, record.endTime, record.breakDuration);
-
-                    // CSV特殊文字のエスケープ（念のためダブルクォートで囲む）
-                    const escapeCSV = (val) => `"${String(val).replace(/"/g, '""')}"`;
-
-                    const row = [
-                        escapeCSV(date),
-                        escapeCSV(startTime),
-                        escapeCSV(endTime),
-                        escapeCSV(breakMinutes),
-                        escapeCSV(workDuration)
-                    ].join(",");
-                    csvContent += row + "\r\n";
-                });
-
-                // ダウンロード処理
+                 if (records.length === 0) { alert('エクスポートするデータがありません。'); return; }
+                 let csvContent = "\uFEFF"; // BOM
+                 csvContent += "日付,出勤時刻,退勤時刻,休憩時間(分),実働時間(HH:MM:SS)\r\n";
+                 [...records].sort((a, b) => b.id - a.id).forEach(record => {
+                     if (!record.endTime) return; // 完了レコードのみ
+                     const date = formatDate(record.startTime);
+                     const startTime = formatTime(record.startTime);
+                     const endTime = formatTime(record.endTime);
+                     const breakMinutes = Math.floor(record.breakDuration / (1000 * 60));
+                     const workDuration = calculateWorkDuration(record.startTime, record.endTime, record.breakDuration);
+                     const escapeCSV = (val) => `"${String(val).replace(/"/g, '""')}"`;
+                     const row = [escapeCSV(date), escapeCSV(startTime), escapeCSV(endTime), escapeCSV(breakMinutes), escapeCSV(workDuration)].join(",");
+                     csvContent += row + "\r\n";
+                 });
                  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
                  const url = URL.createObjectURL(blob);
-                 const link = document.createElement("a");
-                 link.setAttribute("href", url);
-                 // 現在の日付をファイル名に追加
-                 const exportDate = new Date();
-                 const fileNameDate = `${exportDate.getFullYear()}${String(exportDate.getMonth() + 1).padStart(2, '0')}${String(exportDate.getDate()).padStart(2, '0')}`;
+                 const link = document.createElement("a"); link.setAttribute("href", url);
+                 const exportDate = new Date(); const fileNameDate = `${exportDate.getFullYear()}${String(exportDate.getMonth() + 1).padStart(2, '0')}${String(exportDate.getDate()).padStart(2, '0')}`;
                  link.setAttribute("download", `kinmu_records_${fileNameDate}.csv`);
-                 document.body.appendChild(link); // Required for FF
-                 link.click();
-                 document.body.removeChild(link);
-                 URL.revokeObjectURL(url); // オブジェクトURLを解放
+                 document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url);
             }
 
-
-            // --- ヘルパー関数 ---
-            function formatDate(date, separator = '-') {
-                if (!date || !(date instanceof Date)) return ''; // Dateオブジェクトか確認
-                try {
-                    const y = date.getFullYear();
-                    const m = String(date.getMonth() + 1).padStart(2, '0');
-                    const d = String(date.getDate()).padStart(2, '0');
-                    return `${y}${separator}${m}${separator}${d}`;
-                 } catch (e) { return ''; } // 無効なDateの場合
-            }
-
-            function formatTime(date) {
-                if (!date || !(date instanceof Date)) return '';
-                 try {
-                    const h = String(date.getHours()).padStart(2, '0');
-                    const m = String(date.getMinutes()).padStart(2, '0');
-                    const s = String(date.getSeconds()).padStart(2, '0');
-                    return `${h}:${m}:${s}`;
-                 } catch (e) { return ''; }
-            }
-
-             function formatDateTime(date) {
-                 if (!date || !(date instanceof Date)) return '';
-                 try {
-                    return `${formatDate(date)} ${formatTime(date)}`;
-                 } catch (e) { return ''; }
+            // --- ヘルパー関数 (変更なし) ---
+             function formatDate(date, separator = '-') {
+                 if (!date || !(date instanceof Date)) return ''; try { const y = date.getFullYear(); const m = String(date.getMonth() + 1).padStart(2, '0'); const d = String(date.getDate()).padStart(2, '0'); return `${y}${separator}${m}${separator}${d}`; } catch (e) { return ''; }
              }
-             function formatDateTimeForInput(date) {
-                 if (!date || !(date instanceof Date)) return '';
-                 try {
-                     const y = date.getFullYear();
-                     const m = String(date.getMonth() + 1).padStart(2, '0');
-                     const d = String(date.getDate()).padStart(2, '0');
-                     const h = String(date.getHours()).padStart(2, '0');
-                     const min = String(date.getMinutes()).padStart(2, '0');
-                     // 秒はpromptでは扱わないため除外
-                     return `${y}-${m}-${d} ${h}:${min}`;
-                } catch (e) { return ''; }
+             function formatTime(date) {
+                 if (!date || !(date instanceof Date)) return ''; try { const h = String(date.getHours()).padStart(2, '0'); const m = String(date.getMinutes()).padStart(2, '0'); const s = String(date.getSeconds()).padStart(2, '0'); return `${h}:${m}:${s}`; } catch (e) { return ''; }
              }
-
-            function formatDuration(milliseconds) {
-                 if (isNaN(milliseconds) || milliseconds < 0) milliseconds = 0;
-                 const totalSeconds = Math.floor(milliseconds / 1000);
-                 const hours = Math.floor(totalSeconds / 3600);
-                 const minutes = Math.floor((totalSeconds % 3600) / 60);
-                 const seconds = totalSeconds % 60;
-                 return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }
-
-             function calculateWorkDuration(start, end, breakMs) {
-                 if (!start || !(start instanceof Date) || !end || !(end instanceof Date)) return '-';
-                 try {
-                    let durationMs = end.getTime() - start.getTime() - (breakMs || 0);
-                    if (durationMs < 0) durationMs = 0; // マイナス時間は0にする
-                    return formatDuration(durationMs);
-                 } catch (e) { return '-'; }
-             }
-
-            //<x_bin_440>-MM-DD HH:MM(:SS optional)形式の文字列をDateオブジェクトに変換
-            function parseDateTimeString(dateTimeStr) {
-                 if (!dateTimeStr || typeof dateTimeStr !== 'string') return null;
-                 const trimmedStr = dateTimeStr.trim();
-                 // YYYY-MM-DD HH:MM or YYYY-MM-DD HH:MM:SS
-                 const regex = /^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})\s+(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/;
-                 const match = trimmedStr.match(regex);
-
-                 if (!match) return null; // フォーマット不一致
-
-                 const year = parseInt(match[1]);
-                 const month = parseInt(match[2]) - 1; // 月は0から始まる
-                 const day = parseInt(match[3]);
-                 const hour = parseInt(match[4]);
-                 const minute = parseInt(match[5]);
-                 const second = match[6] ? parseInt(match[6]) : 0; // 秒は省略可能
-
-                 // Dateオブジェクトを作成して、入力値との整合性をチェック
-                 const date = new Date(year, month, day, hour, minute, second);
-
-                 if (isNaN(date.getTime()) ||
-                     date.getFullYear() !== year ||
-                     date.getMonth() !== month ||
-                     date.getDate() !== day ||
-                     date.getHours() !== hour ||
-                     date.getMinutes() !== minute ||
-                     date.getSeconds() !== second) {
-                     return null; // 無効な日付（例: 2月30日）または数値変換失敗
-                 }
-                 return date;
-            }
+             function formatDateTime(date) { if (!date || !(date instanceof Date)) return ''; try { return `${formatDate(date)} ${formatTime(date)}`; } catch (e) { return ''; } }
+             function formatDateTimeForInput(date) { if (!date || !(date instanceof Date)) return ''; try { const y = date.getFullYear(); const m = String(date.getMonth() + 1).padStart(2, '0'); const d = String(date.getDate()).padStart(2, '0'); const h = String(date.getHours()).padStart(2, '0'); const min = String(date.getMinutes()).padStart(2, '0'); return `${y}-${m}-${d} ${h}:${min}`; } catch (e) { return ''; } }
+             function formatDuration(milliseconds) { if (isNaN(milliseconds) || milliseconds < 0) milliseconds = 0; const totalSeconds = Math.floor(milliseconds / 1000); const hours = Math.floor(totalSeconds / 3600); const minutes = Math.floor((totalSeconds % 3600) / 60); const seconds = totalSeconds % 60; return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; }
+             function calculateWorkDuration(start, end, breakMs) { if (!start || !(start instanceof Date) || !end || !(end instanceof Date)) return '-'; try { let durationMs = end.getTime() - start.getTime() - (breakMs || 0); if (durationMs < 0) durationMs = 0; return formatDuration(durationMs); } catch (e) { return '-'; } }
+             function parseDateTimeString(dateTimeStr) { if (!dateTimeStr || typeof dateTimeStr !== 'string') return null; const trimmedStr = dateTimeStr.trim(); const regex = /^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})\s+(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/; const match = trimmedStr.match(regex); if (!match) return null; const year = parseInt(match[1]); const month = parseInt(match[2]) - 1; const day = parseInt(match[3]); const hour = parseInt(match[4]); const minute = parseInt(match[5]); const second = match[6] ? parseInt(match[6]) : 0; const date = new Date(year, month, day, hour, minute, second); if (isNaN(date.getTime()) || date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day || date.getHours() !== hour || date.getMinutes() !== minute || date.getSeconds() !== second) { return null; } return date; }
 
         });
     </script>
